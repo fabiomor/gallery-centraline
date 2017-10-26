@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+<script src="control.js"></script>
+ <link href="style.css"  rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  
+  <title>JS Bin</title>
+  <base href="http://5.249.152.25:3000/">
+  <!-- <base href="https://xieranmaya.github.io/images/cats/"> !-->
+</head>
+<body ng-controller="ImageLayout">
+  <section>
+    <div  ng-repeat="img in imgs" >
+      <img ng-src={{img.path}} alt="">
+    </div>
+  </section>
+</body>
+</html>
