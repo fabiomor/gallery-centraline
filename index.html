@@ -21,7 +21,7 @@
 <body ng-controller="ImageLayout">
   <section class="container">
     <div class="row">
-      <div  ng-repeat="img in imgs" class="col-md-3" >
+      <div  ng-repeat="img in imgs" class="col-md-4" >
         <a href="images/{{img.path}}" data-fancybox="images" data-caption="{{img.name}}">
           <img ng-src="images/{{img.path}}" alt="" class="img-responsive center-block">
         </a>
