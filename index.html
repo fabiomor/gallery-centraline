@@ -2,19 +2,34 @@
 <html ng-app="App">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="control.js"></script>
+
+<script src="fancybox/jquery.fancybox.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox.css">
+
  <link href="style.css"  rel='stylesheet' type='text/css'>
   <meta charset="utf-8">
   
-  <title>JS Bin</title>
-  <base href="http://5.249.152.25:3000/">
+  <title>Gallery</title>
+  <base href="http://localhost:8000/images/">
+  <!-- <base href="http://5.249.152.25:3000/"> !-->
   <!-- <base href="https://xieranmaya.github.io/images/cats/"> !-->
 </head>
 <body ng-controller="ImageLayout">
-  <section>
-    <div  ng-repeat="img in imgs" >
-      <img ng-src={{img.path}} alt="">
+  <section class="container">
+    <div class="row">
+      <div  ng-repeat="img in imgs" class="col-md-3" >
+        <a href="{{img.path}}" data-fancybox="images" data-caption="{{img.name}}">
+          <img ng-src="{{img.path}}" alt="" class="img-responsive center-block">
+        </a>
+      </div>
+
     </div>
   </section>
 </body>
+
 </html>

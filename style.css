@@ -1,13 +1,12 @@
-
+body {
+	background-color: black;
+}
 
 div {
-  margin: 2px;
-  background-color: white;
   
 }
 
 img {
-	height: 100%; 
   	width: 100%;
   	margin-bottom: 10px; 
 }
