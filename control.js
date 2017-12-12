@@ -9,18 +9,20 @@ function ImageLayout($scope, $http){
   // 	console.log(imgs)
   //   $scope.imgs = imgs
   // })
-
+  var urlPath = "http://5.249.152.25:3000/api/v1/imagery/getPaths"; 
+  
   $http({
-    url: "http://5.249.152.25:3000/api/v1/imagery/getPaths",
+    url: "images/imgPath.json",
     dataType: "json",
     method: "GET",
     headers: {
         "Content-Type": "application/json"
     }
-}).success(function(response){
+  }).success(function(response){
     $scope.imgs = response;
-}).error(function(error){
-	console.log("error " + error)
+  }).error(function(error){
+	 console.log("error " + error)
     $scope.error = error;
-});
+  });
+  
 }

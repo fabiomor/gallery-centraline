@@ -15,7 +15,6 @@
   <meta charset="utf-8">
   
   <title>Gallery</title>
-  <base href="http://localhost:8000/images/">
   <!-- <base href="http://5.249.152.25:3000/"> !-->
   <!-- <base href="https://xieranmaya.github.io/images/cats/"> !-->
 </head>
@@ -23,8 +22,8 @@
   <section class="container">
     <div class="row">
       <div  ng-repeat="img in imgs" class="col-md-3" >
-        <a href="{{img.path}}" data-fancybox="images" data-caption="{{img.name}}">
-          <img ng-src="{{img.path}}" alt="" class="img-responsive center-block">
+        <a href="images/{{img.path}}" data-fancybox="images" data-caption="{{img.name}}">
+          <img ng-src="images/{{img.path}}" alt="" class="img-responsive center-block">
         </a>
       </div>
 
