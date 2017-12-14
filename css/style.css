@@ -1,0 +1,17 @@
+body {
+	background-color: #848A1E;
+}
+
+h1, p {
+	text-align: center;
+	color: #DDE176
+}
+
+.breadcrumb {
+	background-color: #DDE176 
+}
+
+img {
+  	width: 100%;
+  	margin-bottom: 10px; 
+}

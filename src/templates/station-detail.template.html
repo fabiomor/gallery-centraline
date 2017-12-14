@@ -1,0 +1,12 @@
+<h1> Stazione {{sg.images[0].codice_centralina}}</h1>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="#">Home</a></li>
+  <li class="breadcrumb-item active">Gallery</li>
+</ol>
+<div class="row">
+  <div  ng-repeat="image in sg.images" class="col-md-4" >
+    <a href="images/{{image.path}}"   data-fancybox="images" data-caption="{{image.name}}">
+      <img ng-src="images/{{image.path}}" alt="" class="img-responsive center-block">
+    </a>
+  </div>
+</div>
