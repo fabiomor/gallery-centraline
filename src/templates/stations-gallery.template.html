@@ -1,7 +1,7 @@
 <div class="row">
   <div  ng-repeat="station in $ctrl.stations" class="col-md-4" >
   	<div> <p>{{station.codice_centralina}} </p></div>
-    <a ui-sref="stationGallery({stationId: 25})">
+    <a ui-sref="stationGallery({stationId: station.id_centralina})">
       <img ng-src="images/{{station.path}}" alt="" class="img-responsive center-block">
     </a>
   </div>
