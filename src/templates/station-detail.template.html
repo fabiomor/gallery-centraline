@@ -1,12 +1,25 @@
 <h1> Stazione {{sg.images[0].codice_centralina}}</h1>
 <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="#">Home</a></li>
-  <li class="breadcrumb-item active">Gallery</li>
+  <li class="breadcrumb-item">
+    <a ui-sref="home">Home</a>
+  </li>
+  <li class="breadcrumb-item active">{{sg.images[0].codice_centralina}}</li>
 </ol>
+<div class="row date-filter-gallery">
+  <div class="col-md-4">
+    <input type="date" class="form-control" ng-model="date.start" ng-change="sg.dateChanged()" /> 
+  </div>
+  <div class="col-md-4">
+    <input type="date" class="form-control" ng-model="date.end" ng-change="sg.dateChanged()"> 
+  </div>
+  <div class="col-md-4">
+    <select class="form-control" ng-model="date.hour"  ng-options="option.value for option in sg.hourSelection" ng-change="sg.hourChanged()"></select>
+  </div>
+</div>
 <div class="row">
-  <div  ng-repeat="image in sg.images" class="col-md-4" >
-    <a href="images/{{image.path}}"   data-fancybox="gallery" data-caption="{{image.name}}">
+  <div ng-repeat="image in sg.images" class="col-md-4">
+    <a href="images/{{image.path}}" data-fancybox="images" data-caption="{{image.name}}">
       <img ng-src="images/{{image.path}}" alt="" class="img-responsive center-block">
     </a>
   </div>
-</div
+</div>
