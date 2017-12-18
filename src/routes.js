@@ -35,27 +35,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
         return WeatherStationsService.getImagesByStation($stateParams.stationId);
       }]
     }
-  })
-
-  .state('prova', {
-    url: '/',
-    templateUrl: 'src/templates/station-detail.template.html'
   });
-
-  // .state('itemDetail', {
-  //   url: '/item-detail/{itemId}',
-  //   templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
-  //   controller: 'ItemDetailController as itemDetail',
-  //   resolve: {
-  //     item: ['$stateParams', 'ShoppingListService',
-  //           function ($stateParams, ShoppingListService) {
-  //             return ShoppingListService.getItems()
-  //               .then(function (items) {
-  //                 return items[$stateParams.itemId];
-  //               });
-  //           }]
-  //   }
-  // });
 }
 
 })();
