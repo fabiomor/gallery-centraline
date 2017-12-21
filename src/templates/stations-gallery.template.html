@@ -2,11 +2,7 @@
   <div  ng-repeat="station in $ctrl.stations" class="col-md-4" >
   	<div> <p>{{station.codice_centralina}} </p></div>
     <a ui-sref="stationGallery({stationId: station.id_centralina})">
-<<<<<<< HEAD
-      <img ng-src="http://5.249.152.25:81/immagini/{{station.path}}" alt="" class="img-responsive center-block">
-=======
       <img ng-src="http://5.249.152.25:81/immagini/{{station.path}}" alt="" class="lazy img-responsive center-block">
->>>>>>> 91d69efd90477881408eac2b7349376b1ee9f7f3
     </a>
   </div>
 </div>
