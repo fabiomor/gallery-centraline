@@ -7,8 +7,32 @@ h1, p {
 	color: #DDE176
 }
 
+/* Menu */
+
 .breadcrumb {
 	background-color: #DDE176 
+}
+
+/* Home Gallery */
+
+.station-header {
+	font-size: 1.4em;
+}
+
+/* Detail Weather Station */
+
+.image-header {
+	background-color: #DDE176;
+	border-radius: 10px;
+}
+
+.image-header > p {
+	color: #848A1E;
+	font-style: bold;
+}
+
+.image-header i {
+	font-size: 1.5em;
 }
 
 .input-gallery {
@@ -19,7 +43,7 @@ h1, p {
 	margin-bottom: 10px;
 }
 
-img {
+.image-station {
   	width: 100%;
   	margin-bottom: 10px; 
 }
