@@ -33,6 +33,8 @@
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
+
   <!-- Popper !-->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script> -->
   <!-- Bootstrap JS -->
@@ -51,6 +53,12 @@
   <script src="src/weatherstations/weather-stations.controller.js"></script>
   <script src="src/weatherstations/station-gallery.controller.js"></script>
   <script src="src/weatherstations/weather-stations.service.js"></script>
+
+  <script>
+    $(function() {
+        $('.lazy').lazy();
+    });
+  </script>
 </body>
 
 </html>

@@ -6,20 +6,20 @@
   <li class="breadcrumb-item active">{{sg.images[0].codice_centralina}}</li>
 </ol>
 <div class="row date-filter-gallery">
-  <div class="col-md-4">
+  <div class="col-md-4 input-gallery">
     <input type="date" class="form-control" ng-model="date.start" ng-change="sg.dateChanged()" /> 
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4 input-gallery">
     <input type="date" class="form-control" ng-model="date.end" ng-change="sg.dateChanged()"> 
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4 input-gallery">
     <select class="form-control" ng-model="date.hour"  ng-options="option.value for option in sg.hourSelection" ng-change="sg.hourChanged()"></select>
   </div>
 </div>
 <div class="row">
   <div ng-repeat="image in sg.images" class="col-md-4">
-    <a href="images/{{image.path}}" data-fancybox="images" data-caption="{{image.name}}">
-      <img ng-src="images/{{image.path}}" alt="" class="img-responsive center-block">
+    <a href="http://5.249.152.25:81/immagini/{{image.path}}" data-fancybox="images" data-caption="{{image.name}}">
+      <img ng-src="http://5.249.152.25:81/immagini/{{image.path}}" alt="" class="lazy img-responsive center-block">
     </a>
   </div>
 </div>

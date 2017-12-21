@@ -11,6 +11,10 @@ h1, p {
 	background-color: #DDE176 
 }
 
+.input-gallery {
+	margin-bottom: 10px;
+}
+
 .date-filter-gallery {
 	margin-bottom: 10px;
 }
