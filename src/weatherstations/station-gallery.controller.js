@@ -28,8 +28,8 @@ function StationGalleryController($scope, images, dateFilter, hourFilter) {
 
   function init() {
     $scope.date = {};
-    $scope.date.start = new Date("2017-12-1")
-    $scope.date.end = new Date("2017-12-2")
+    $scope.date.start = new Date("2017-12-21")
+    $scope.date.end = new Date("2017-12-22")
     sg.hourSelection = [
       {id: 0, value:'All'},
       {id: 1, value:'10'},
