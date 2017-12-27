@@ -1,9 +1,9 @@
-<h1> Station {{sg.images[0].codice_centralina}}</h1>
+<h1> Station {{sg.stationName}}</h1>
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
     <a ui-sref="home">Home</a>
   </li>
-  <li class="breadcrumb-item active">{{sg.images[0].codice_centralina}}</li>
+  <li class="breadcrumb-item active">{{sg.stationName}}</li>
 </ol>
 <div class="row date-filter-gallery">
   <div class="col-md-4 input-gallery">
@@ -12,9 +12,28 @@
   <div class="col-md-4 input-gallery">
     <input type="date" class="form-control" ng-model="date.end" ng-change="sg.dateChanged()"> 
   </div>
-  <div class="col-md-4 input-gallery">
+  <!--
+  <div class="col-md-2 input-gallery">
+        <input class="form-control"
+        moment-picker="sg.timepicker"
+        format="HH:mm"
+        locale="it"
+        hours-start="10"
+        ng-model="sg.timepicker"
+        ng-model-options="{ updateOn: 'blur' }">  
+  </div> 
+  !-->
+  <div class="col-md-2 col-6 input-gallery">
+    <input class="form-control" type="time" ng-model="time.start" min="{{time.minTime}}" max="{{time.maxTime}}" ng-change="sg.timeChanged()">
+  </div>
+  <div class="col-md-2 col-6 input-gallery">
+      <input class="form-control" type="time" ng-model="time.end" min="{{time.minTime}}" max="{{time.maxTime}}" ng-change="sg.timeChanged()">
+  </div>
+  <!--
+  <div class="col-md-2 input-gallery">
     <select class="form-control" ng-model="date.hour"  ng-options="option.value for option in sg.hourSelection" ng-change="sg.hourChanged()"></select>
   </div>
+  !-->
 </div>
 <div class="row">
   <div ng-repeat="image in sg.images" class="col-md-4">
