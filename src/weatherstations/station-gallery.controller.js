@@ -40,8 +40,8 @@ function StationGalleryController($scope, images, dateFilter, hourFilter) {
     sg.stationName = images.data[0].codice_centralina;
     // init date filter fields
     $scope.date = {};
-    $scope.date.start = new Date(moment().subtract(1,"days"));
-    $scope.date.end = new Date();
+    $scope.date.start = new Date(moment().subtract(1,"days").startOf("day"));
+    $scope.date.end = new Date((moment().startOf("day")));
     var times = extractUniqueTimes(images.data);
     // init time hour and minutes max min ranges
     minHour = times.hours[0];
