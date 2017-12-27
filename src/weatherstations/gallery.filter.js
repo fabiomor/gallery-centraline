@@ -6,9 +6,9 @@
             return function (items, fromDate, toDate) {
                 var filtered = [];
                 var from_date = moment(fromDate);
-                var to_date = moment(toDate).add(1, "days");
+                var to_date = moment(toDate);
                 angular.forEach(items, function (item) {
-                    if (Date.parse(item.data) > from_date && Date.parse(item.data) < to_date) {
+                    if (Date.parse(item.data) > from_date && Date.parse(item.data) <= to_date) {
                         filtered.push(item);
                     }
                 });

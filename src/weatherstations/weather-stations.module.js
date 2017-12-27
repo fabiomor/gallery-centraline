@@ -1,5 +1,5 @@
 (function () {
 'use strict';
 
-angular.module('WeatherStations', ['ui.router', 'moment-picker'])
+angular.module('WeatherStations', ['ui.router'])
 })();

@@ -8,6 +8,7 @@ angular.module('WeatherStations')
 StationGalleryController.$inject = ['$scope','images','dateRangeFilter', 'hourFilter'];
 function StationGalleryController($scope, images, dateFilter, hourFilter) {
   let sg = this;
+  var minHour, minMinute, maxHour, maxMinute;
   init();
 
   if($scope.date.start) {
@@ -19,37 +20,40 @@ function StationGalleryController($scope, images, dateFilter, hourFilter) {
 
   sg.dateChanged = function () {
     sg.images = dateFilter(images.data, $scope.date.start, $scope.date.end);
-    sg.images = hourFilter(sg.images,
-        toDoubleDigit($scope.time.start.getHours()) + ":" + toDoubleDigit($scope.time.start.getMinutes()),
-        toDoubleDigit($scope.time.end.getHours()) + ":" + toDoubleDigit($scope.time.end.getMinutes()));
+    let startHour = $scope.time.start ? toDoubleDigit($scope.time.start.getHours()) : toDoubleDigit(minHour);
+    let endHour = $scope.time.end ? toDoubleDigit($scope.time.end.getHours()) : toDoubleDigit(maxHour);
+    let startMinute = $scope.time.start ? toDoubleDigit($scope.time.start.getMinutes()) : toDoubleDigit(minMinute);
+    let endMinute = $scope.time.end ? toDoubleDigit($scope.time.end.getMinutes()) : toDoubleDigit(maxMinute);
+    sg.images = hourFilter(sg.images, startHour + ":" + startMinute, endHour + ":" + endMinute);
   }
 
   sg.timeChanged = function() {
     sg.images = dateFilter(images.data, $scope.date.start, $scope.date.end);
-    sg.images = hourFilter(sg.images,
-      toDoubleDigit($scope.time.start.getHours()) + ":" + toDoubleDigit($scope.time.start.getMinutes()),
-      toDoubleDigit($scope.time.end.getHours()) + ":" + toDoubleDigit($scope.time.end.getMinutes()));
+    let startHour = $scope.time.start ? toDoubleDigit($scope.time.start.getHours()) : toDoubleDigit(minHour);
+    let endHour = $scope.time.end ? toDoubleDigit($scope.time.end.getHours()) : toDoubleDigit(maxHour);
+    let startMinute = $scope.time.start ? toDoubleDigit($scope.time.start.getMinutes()) : toDoubleDigit(minMinute);
+    let endMinute = $scope.time.end ? toDoubleDigit($scope.time.end.getMinutes()) : toDoubleDigit(maxMinute);
+    sg.images = hourFilter(sg.images, startHour + ":" + startMinute, endHour + ":" + endMinute);
   }
 
   function init() {
     sg.stationName = images.data[0].codice_centralina;
+    // init date filter fields
     $scope.date = {};
-    $scope.date.start = new Date(moment().subtract(7,"days"));
+    $scope.date.start = new Date(moment().subtract(1,"days"));
     $scope.date.end = new Date();
-    let times = extractUniqueTimes(images.data);
+    var times = extractUniqueTimes(images.data);
+    // init time hour and minutes max min ranges
+    minHour = times.hours[0];
+    minMinute = times.minutes[0];
+    maxHour = times.hours[times.hours.length - 1];
+    maxMinute = times.minutes[times.minutes.length - 1];
+    // init time filter fields
     $scope.time = {};
     $scope.time.minTime = toDoubleDigit(times.hours[0]) + ":00";
     $scope.time.maxTime = toDoubleDigit(times.hours[times.hours.length - 1]) + ":59" //+ toDoubleDigit(times.minutes[times.minutes.length - 1]) + ":00";
-    $scope.time.start = new Date(1970, 0 , 1, times.hours[0], times.minutes[0]);
-    $scope.time.end = new Date(1970, 0 , 1, times.hours[times.hours.length - 1], times.minutes[times.minutes.length - 1]);
-    console.log($scope.time);
-    sg.hourSelection = [
-      {id: 0, value:'All'},
-      {id: 1, value:'10'},
-      {id: 2, value:'13'},
-      {id: 3, value:'15'}
-    ];
-    $scope.date.hour = sg.hourSelection[0];
+    $scope.time.start = new Date(1970, 0 , 1, times.hours[0], times.minutes[0], 0, 0);
+    $scope.time.end = new Date(1970, 0 , 1, times.hours[times.hours.length - 1], times.minutes[times.minutes.length - 1], 0, 0);
   }
 
   function extractUniqueTimes(stations) {
