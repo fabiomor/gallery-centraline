@@ -1,8 +1,12 @@
-<div class="row">
-  <div  ng-repeat="station in $ctrl.stations" class="col-md-4" >
-  	<div class="station-header"> <p>{{station.codice_centralina}} </p></div>
-    <a ui-sref="stationGallery({stationId: station.id_centralina})">
-      <img ng-src="http://5.249.152.25:81/immagini/{{station.path}}" alt="" class="lazy image-station img-responsive center-block">
-    </a>
+<div class="row" >
+  <div ng-repeat="station in $ctrl.stations" class="col-md-4">
+    <div class="station">
+      <div class="station-header">
+        <p>{{station.nome_stazione}}</p>
+      </div>
+      <a ui-sref="stationGallery({stationId: station.id_stazione})">
+        <img ng-src="http://5.249.152.25:81/immagini/{{station.path}}" alt="" class="lazy image-station img-responsive center-block">
+      </a>
+    </div>
   </div>
 </div>

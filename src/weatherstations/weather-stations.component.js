@@ -3,7 +3,7 @@
 
 angular.module('WeatherStations')
 .component('weatherStations', {
-  templateUrl: 'src/templates/stations-gallery.template.html',
+  templateUrl: '../weather-gallery/src/templates/stations-gallery.template.html',
   bindings: {
     stations: '<'
   }

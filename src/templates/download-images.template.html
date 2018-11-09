@@ -1,0 +1,86 @@
+<div class='titolo-pagina'>Download immagini</div>
+
+<form class="form-horizontal ewForm ewSearchForm form-ricerca" id="form1">
+  <div class='form-group'>
+    <label class='col-sm-3 control-label ewLabel'>
+      <span>Stazione</span>
+    </label>
+    <div class="col-sm-9">
+      <span>
+        <select multiple  required="required"  size='12' ng-disabled="dc.isZipping"
+          ng-model="stationSelection" ng-options="station.nome_stazione for station in dc.stations" ng-change="dc.stationChanged()">
+        </select>
+      </span>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='col-sm-3 control-label ewLabel'>
+      <span>Formato Immagine (jpeg)</span>
+    </label>
+    <div class="col-sm-9">
+      <input type="radio" value="small" ng-model="imageFormat" ng-change="dc.resetFields()" ng-disabled="dc.isZipping"> Ridotto (800 x 600)
+      <br>
+      <input type="radio" value="original" ng-model="imageFormat" ng-change="dc.resetFields()" ng-disabled="dc.isZipping"> Originale (3280 x 2464)
+      <br>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <label class='col-sm-3 control-label ewLabel'>
+      <span>Data Inizio</span>
+    </label>
+    <div class="col-sm-9">
+      <input type="date" ng-model="date.start" ng-change="dc.resetFields()" ng-disabled="dc.isZipping">
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <label class='col-sm-3 control-label ewLabel'>
+      <span>Data Fine</span>
+    </label>
+    <div class="col-sm-9">
+      <input type="date" ng-model="date.end" ng-change="dc.resetFields()" ng-disabled="dc.isZipping">
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='col-sm-3 control-label ewLabel'>
+      <span>Orario Inizio</span>
+    </label>
+    <div class="col-sm-9">
+      <input type="time" ng-model="time.start" ng-change="dc.resetFields()" ng-disabled="dc.isZipping">
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='col-sm-3 control-label ewLabel'>
+      <span>Orario Fine</span>
+    </label>
+    <div class="col-sm-9">
+      <input type="time" ng-model="time.end" ng-change="dc.resetFields()" ng-disabled="dc.isZipping">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <button class="btn btn-default" ng-click="dc.getStationImages()" style='height: 26px' ng-disabled="dc.isZipping">Crea Zip</button>
+    </div>
+  </div>
+  <div class="form-group">
+      <div class="progress hide" id="progress_bar">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            Zip Immagini
+          </div>
+      </div>
+    <!-- <uib-progressbar value="currentProgress"><span style="color:white; white-space:nowrap;">Progress: {{currentProgress}}%</span></uib-progressbar> !-->
+    <!-- <md-progress-linear md-mode="determinate" value="{{dc.currentProgress}}"></md-progress-linear> !-->
+  </div>
+  <div class="form-group" ng-show="dc.zipEnded">
+      <label class='col-sm-3 control-label ewLabel'>
+        <span>Il file zip è {{dc.fileSize}} MB</span>
+      </label>
+      <div class="col-sm-9">
+          <button class="btn btn-default" ng-click="dc.downloadZip()" style='height: 26px'>Download</button>
+      </div>
+    </div>
+</form>
+
+    

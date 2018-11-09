@@ -5,8 +5,8 @@ angular.module('WeatherStations')
 .controller('StationGalleryController', StationGalleryController)
 
 
-StationGalleryController.$inject = ['$scope','images','dateRangeFilter', 'hourFilter'];
-function StationGalleryController($scope, images, dateFilter, hourFilter) {
+StationGalleryController.$inject = ['$scope','$location', '$state', 'stations','images','dateRangeFilter', 'hourFilter'];
+function StationGalleryController($scope, $location, $state, stations, images, dateFilter, hourFilter) {
   let sg = this;
   var minHour, minMinute, maxHour, maxMinute;
   init();
@@ -36,8 +36,16 @@ function StationGalleryController($scope, images, dateFilter, hourFilter) {
     sg.images = hourFilter(sg.images, startHour + ":" + startMinute, endHour + ":" + endMinute);
   }
 
+  sg.stationChanged = function() {
+    $location.path('/station-gallery/' + $scope.stationSelection.id_stazione);
+  }
+
   function init() {
-    sg.stationName = images.data[0].codice_centralina;
+    sg.stationName = images.data[0].nome_stazione;
+    sg.stations = stations.data;
+    sg.stationId = $state.params.stationId;
+    // station selection
+    $scope.stationSelection = sg.stations[getStationIndexById(sg.stations, sg.stationId)];
     // init date filter fields
     $scope.date = {};
     $scope.date.start = new Date(moment().subtract(1,"days").startOf("day"));
@@ -52,7 +60,9 @@ function StationGalleryController($scope, images, dateFilter, hourFilter) {
     $scope.time = {};
     $scope.time.minTime = toDoubleDigit(times.hours[0]) + ":00";
     $scope.time.maxTime = toDoubleDigit(times.hours[times.hours.length - 1]) + ":59" //+ toDoubleDigit(times.minutes[times.minutes.length - 1]) + ":00";
-    $scope.time.start = new Date(1970, 0 , 1, times.hours[0], times.minutes[0], 0, 0);
+    $scope.time.start = new Date(1970, 0 , 1, times.hours[0], times.minutes[0]);
+    $scope.time.start.setSeconds(0);
+    $scope.time.start.setMilliseconds(0);
     $scope.time.end = new Date(1970, 0 , 1, times.hours[times.hours.length - 1], times.minutes[times.minutes.length - 1], 0, 0);
   }
 
@@ -67,6 +77,17 @@ function StationGalleryController($scope, images, dateFilter, hourFilter) {
     times.hours = hours.unique().sort(sortNumber);
     times.minutes = minutes.unique().sort(sortNumber);
     return times;
+  }
+
+  function getStationIndexById(stations, id) {
+    let found = false;
+    let index = 0;
+    while(index < stations.length) {
+      if(stations[index].id_stazione == id) {
+        return index;
+      }
+      index++;
+    }
   }
 }
 

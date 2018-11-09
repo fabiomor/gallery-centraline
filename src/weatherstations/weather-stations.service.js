@@ -8,25 +8,46 @@ angular.module('WeatherStations')
 WeatherStationsService.$inject = ['$http', 'ApiBasePath'];
 function WeatherStationsService($http, ApiBasePath) {
 	var service = this;
+	var user = {};
+
+	service.setUser = function (id, level) {
+		user.id = id;
+		user.level = level;
+	}
+
+	service.getUser = function () {
+		return user;
+	}
 
 	service.getWeatherStations = function () {
-		var response = $http({
+		let response = $http({
 			method: "GET",
-			url: (ApiBasePath + "/getStations")
+			url: (ApiBasePath + "/getStations"),
+			params: {
+		        userID: user.id 
+		    }
 		});
 		return response;
 	}
 
 	service.getImagesByStation = function (id) {
-		var response = $http({
+		let response = $http({
 		      method: "GET",
 		      url: (ApiBasePath + "/getImagesByStation"),
 		      params: {
 		        stationID: id 
 		      }
 		 	});
-
     	return response;
+	}
+
+	service.getImagesByDates = function (parameters) {
+		let response = $http({
+			method: "POST",
+			url: (ApiBasePath + "/getImagesByDates"),
+			data: parameters
+		});
+		return response;
 	}
 };
 })();

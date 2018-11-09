@@ -16,8 +16,19 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   // Home page
   .state('home', {
     url: '/',
-    templateUrl: 'src/templates/home.template.html',
+    templateUrl: '../weather-gallery/src/templates/home.template.html',
     controller: 'WeatherStationsController as ws',
+    resolve : {
+      stations: ['WeatherStationsService', function (WeatherStationsService) {
+        return WeatherStationsService.getWeatherStations();
+      }]
+    }
+  })
+
+  .state('download-images', {
+    url: '/download-images',
+    templateUrl: '../weather-gallery/src/templates/download-images.template.html',
+    controller: 'ImageDownloaderController as dc',
     resolve : {
       stations: ['WeatherStationsService', function (WeatherStationsService) {
         return WeatherStationsService.getWeatherStations();
@@ -28,9 +39,12 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   // Premade list page
   .state('stationGallery', {
     url: '/station-gallery/{stationId}',
-    templateUrl: 'src/templates/station-detail.template.html',
+    templateUrl: '../weather-gallery/src/templates/station-detail.template.html',
     controller: 'StationGalleryController as sg',
     resolve: {
+      stations: ['WeatherStationsService', function (WeatherStationsService) {
+        return WeatherStationsService.getWeatherStations();
+      }],
       images: ['$stateParams', 'WeatherStationsService', function ($stateParams, WeatherStationsService) {
         return WeatherStationsService.getImagesByStation($stateParams.stationId);
       }]

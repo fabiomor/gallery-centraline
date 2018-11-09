@@ -14,18 +14,32 @@ h1, p {
 }
 
 /* Home Gallery */
+.station {
+	border-color: #DDE176;
+	border-width: 5px;
+	border-style: solid;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 2%;
+}
+
 
 .station-header {
 	font-size: 1.4em;
+	height: 60px;;
 }
+
+
 
 /* Detail Weather Station */
 
-.image-header {
+.image-header{
 	background-color: #DDE176;
 	border-radius: 10px;
-	height: 80px;
+	/*height: 80px;*/
 	margin-bottom: 1%;
+	padding-top: 6px;
+	padding-bottom: 1px;
 }
 
 .image-header > p {
@@ -46,6 +60,27 @@ h1, p {
 }
 
 .image-station {
-  	width: 100%;
+	
   	margin-bottom: 5%; 
 }
+
+.unstyled::-webkit-clear-button,
+.unstyled::-webkit-inner-spin-button {
+    display: 			none;
+	-webkit-appearance: none;
+	-moz-appearance: 	none;
+	-ms-appearance: 	none;
+	-o-appearance: 		none;
+	appearance: none;
+}
+
+.unstyled-time::-webkit-clear-button {
+    display: none;
+	-webkit-appearance: none;
+	-moz-appearance: 	none;
+	-ms-appearance: 	none;
+    -o-appearance: 		none;
+}
+
+
+.form-control-1 {width: 100%; margin: 5px 0px;}

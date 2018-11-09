@@ -1,16 +1,28 @@
-<h1> Station {{sg.stationName}}</h1>
-<ol class="breadcrumb">
+<ol class="breadcrumb" style='display: none'>
   <li class="breadcrumb-item">
-    <a ui-sref="home">Home</a>
+    <a ui-sref="home">AgroCAM</a>
   </li>
   <li class="breadcrumb-item active">{{sg.stationName}}</li>
 </ol>
-<div class="row date-filter-gallery">
-  <div class="col-md-4 input-gallery">
-    <input type="date" class="form-control" ng-model="date.start" ng-change="sg.dateChanged()" /> 
+	 <!--<div class="station-header"> <p>{{sg.stationName}}</p></div>-->
+<!--<div class='label-select'>Stazione</div>-->	
+<div class="date-filter-gallery input-gallery" style='float: left' >
+  <select class="form-control" ng-model="stationSelection"  ng-options="station.nome_stazione for station in sg.stations" ng-change="sg.stationChanged()">
+  </select> 
+</div>
+<div style='float: left; margin-left: 15px'>
+  <a ui-sref="home" style='text-decoration: underline'>tutte le stazioni</a>
+</div>
+<div class='pull-right'>
+	<a href='meteo-stazione.php?id_stazione={{sg.stationId}}' class="btn control-scorciatoie">meteo stazione</a>	
+</div>
+
+<div class="row date-filter-gallery" style='clear: both'>
+  <div class="col-md-4 col-xs-6 input-gallery">
+    <input type="date" required class="form-control-1 unstyled" ng-model="date.start" ng-change="sg.dateChanged()" /> 
   </div>
-  <div class="col-md-4 input-gallery">
-    <input type="date" class="form-control" ng-model="date.end" ng-change="sg.dateChanged()"> 
+  <div class="col-md-4 col-xs-6 input-gallery">
+    <input type="date" required class="form-control-1 unstyled" ng-model="date.end" ng-change="sg.dateChanged()"> 
   </div>
   <!--
   <div class="col-md-2 input-gallery">
@@ -23,11 +35,11 @@
         ng-model-options="{ updateOn: 'blur' }">  
   </div> 
   !-->
-  <div class="col-md-2 col-6 input-gallery">
-    <input class="form-control" type="time" ng-model="time.start" min="{{time.minTime}}" max="{{time.maxTime}}" ng-change="sg.timeChanged()">
+  <div class="col-md-2 col-xs-6 input-gallery">
+    <input class="form-control-1 unstyled-time"  required="required" step="60" type="time" ng-model="time.start" min="{{time.minTime}}" max="{{time.maxTime}}" ng-change="sg.timeChanged()">
   </div>
-  <div class="col-md-2 col-6 input-gallery">
-      <input class="form-control" type="time" ng-model="time.end" min="{{time.minTime}}" max="{{time.maxTime}}" ng-change="sg.timeChanged()">
+  <div class="col-md-2 col-xs-6 input-gallery">
+      <input class="form-control-1 unstyled-time" required="required" step="60" type="time" ng-model="time.end" min="{{time.minTime}}" max="{{time.maxTime}}" ng-change="sg.timeChanged()">
   </div>
   <!--
   <div class="col-md-2 input-gallery">
@@ -38,7 +50,7 @@
 <div class="row">
   <div ng-repeat="image in sg.images" class="col-md-4">
     <div class="image-header">
-      <p>{{image.data | date:'dd/MM/yyyy HH:mm:00'}}</p>
+      <p>{{image.data | date:'dd/MM/yyyy HH:mm:00' : '+0000'}}</p>
       <p>
         <i class="wi wi-thermometer"></i> {{image.temp1_media}} °C
         <i class="wi wi-humidity"></i> {{image.ur1_media}} %
